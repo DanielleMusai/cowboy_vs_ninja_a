@@ -18,10 +18,7 @@ namespace ariel
         return 0.0;
     }
 
-    void Character::hit(int amount)
-    {
-        // Implementation left as an exercise
-    }
+    void Character::hit(int amount) {}
 
     std::string Character::getName() const
     {
@@ -41,18 +38,15 @@ namespace ariel
 
     Cowboy::~Cowboy() {}
 
-    void Cowboy::shoot(Character *enemy)
-    {
-    }
+    void Cowboy::shoot(Character *enemy){}
 
     bool Cowboy::hasBullets() const
     {
         return true;
     }
 
-    void Cowboy::reload()
-    {
-    }
+    void Cowboy::reload(){}
+
     std::string Cowboy::print() const
     {
         return "Cowboy: " + getName();
@@ -63,11 +57,9 @@ namespace ariel
 
     Ninja::~Ninja() {}
 
-    void Ninja::move(Character *enemy)
-    {
-    }
+    void Ninja::move(Character *enemy){}
 
-    void Ninja::slash(Character *enemy) {}
+    void Ninja::slash(Character *enemy){}
 
     std::string Ninja::print() const
     {

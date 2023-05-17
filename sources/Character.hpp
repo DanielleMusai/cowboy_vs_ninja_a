@@ -7,6 +7,12 @@ namespace ariel
 
     class Character
     {
+
+    protected:
+        std::string name;
+        int hitPoints;
+        Point location;
+
     public:
         Character(const std::string &name, const Point &location, int hitPoints);
         virtual ~Character();
@@ -17,15 +23,13 @@ namespace ariel
         std::string getName() const;
         Point getLocation() const;
         virtual std::string print() const;
-
-    protected:
-        std::string name;
-        int hitPoints;
-        Point location;
     };
 
     class Cowboy : public Character
     {
+    private:
+        int bullets;
+
     public:
         Cowboy(const std::string &name, const Point &location);
         virtual ~Cowboy();
@@ -34,13 +38,13 @@ namespace ariel
         bool hasBullets() const;
         void reload();
         std::string print() const override;
-
-    private:
-        int bullets;
     };
 
     class Ninja : public Character
     {
+    private:
+        int speed;
+
     public:
         Ninja(const std::string &name, const Point &location, int speed);
         virtual ~Ninja();
@@ -48,9 +52,6 @@ namespace ariel
         void move(Character *enemy);
         void slash(Character *enemy);
         std::string print() const override;
-
-    private:
-        int speed;
     };
 
     class YoungNinja : public Ninja

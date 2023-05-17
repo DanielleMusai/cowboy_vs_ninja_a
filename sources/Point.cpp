@@ -6,25 +6,30 @@ namespace ariel {
 
     Point::Point(double xCoord, double yCoord) : x(xCoord), y(yCoord) {}
 
-    double Point::getX() const {
+    double Point::getX() const 
+    {
         return x;
     }
 
-    double Point::getY() const {
+    double Point::getY() const 
+    {
         return y;
     }
 
-    double Point::distance(const Point& point) const {
+    double Point::distance(const Point& point) const 
+    {
         double dx = x - point.x;
         double dy = y - point.y;
         return std::sqrt(dx * dx + dy * dy);
     }
 
-    void Point::print() const {
+    void Point::print() const 
+    {
         std::cout << "(" << x << ", " << y << ")";
     }
 
-    Point Point::moveTowards(const Point& source, const Point& destination, double distance) const {
+    Point Point::moveTowards(const Point& source, const Point& destination, double distance) const 
+    {
         double dx = destination.x - source.x;
         double dy = destination.y - source.y;
         double currentDistance = std::sqrt(dx * dx + dy * dy);
