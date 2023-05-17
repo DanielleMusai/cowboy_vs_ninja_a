@@ -1,72 +1,81 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
-
 #include "Point.hpp"
 #include <string>
+namespace ariel
+{
 
-namespace ariel {
-
-    class Character {
-    private:
-    std::string name;
-        Point location;
-        int hitPoints;
-
+    class Character
+    {
     public:
-       
+        Character(const std::string &name, const Point &location, int hitPoints);
+        virtual ~Character();
 
-        Character(const std::string& name, const Point& location);
-        Character(const Character& other);
         bool isAlive() const;
-        double distance(const Character* other) const;
+        double distance(const Character *other) const;
         void hit(int amount);
         std::string getName() const;
         Point getLocation() const;
         virtual std::string print() const;
+
+    protected:
+        std::string name;
+        int hitPoints;
+        Point location;
     };
 
-    class Cowboy : public Character {
-    private:
-        std::string weapon;
-        int ballsAmo;
-
+    class Cowboy : public Character
+    {
     public:
-        Cowboy(const std::string& name, const Point& location);
-        void shoot(Character* enemy);
+        Cowboy(const std::string &name, const Point &location);
+        virtual ~Cowboy();
+
+        void shoot(Character *enemy);
         bool hasBullets() const;
         void reload();
         std::string print() const override;
+
+    private:
+        int bullets;
     };
 
-    class Ninja : public Character {
+    class Ninja : public Character
+    {
+    public:
+        Ninja(const std::string &name, const Point &location, int speed);
+        virtual ~Ninja();
+
+        void move(Character *enemy);
+        void slash(Character *enemy);
+        std::string print() const override;
+
     private:
         int speed;
+    };
 
+    class YoungNinja : public Ninja
+    {
     public:
-        Ninja(const std::string& name, const Point& location, int speed);
-        void move(Character* enemy);
-        void slash(Character* enemy);
+        YoungNinja(const std::string &name, const Point &location);
+        virtual ~YoungNinja();
         std::string print() const override;
     };
 
-    class YoungNinja : public Ninja {
+    class TrainedNinja : public Ninja
+    {
     public:
-        YoungNinja(const std::string& name, const Point& location);
-  
+        TrainedNinja(const std::string &name, const Point &location);
+        virtual ~TrainedNinja();
+        std::string print() const override;
     };
 
-    class TrainedNinja : public Ninja {
+    class OldNinja : public Ninja
+    {
     public:
-        TrainedNinja(const std::string& name, const Point& location);
-     
+        OldNinja(const std::string &name, const Point &location);
+        virtual ~OldNinja();
+        std::string print() const override;
     };
-
-    class OldNinja : public Ninja {
-    public:
-        OldNinja(const std::string& name, const Point& location);
-     
-    };
-
-} // namespace ariel
+}
 
 #endif // CHARACTER_HPP

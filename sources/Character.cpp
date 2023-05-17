@@ -1,78 +1,109 @@
 #include "Character.hpp"
 
-namespace ariel {
+namespace ariel
+{
 
-    Character::Character(const std::string& name, const Point& location)
-        : name(name), location(location){}
-  Character::Character(const Character& other)
-        : name(other.name), location(other.location) {
-    
-    }
+    Character::Character(const std::string &name, const Point &location, int hitPoints)
+        : name(name), location(location), hitPoints(hitPoints) {}
 
-    bool Character::isAlive() const {
+    Character::~Character() {}
+
+    bool Character::isAlive() const
+    {
         return false;
     }
 
-    double Character::distance(const Character* other) const {
+    double Character::distance(const Character *other) const
+    {
         return 0.0;
     }
 
-    void Character::hit(int amount) {
+    void Character::hit(int amount)
+    {
+        // Implementation left as an exercise
     }
 
-    std::string Character::getName() const {
+    std::string Character::getName() const
+    {
         return name;
     }
 
-    Point Character::getLocation() const {
+    Point Character::getLocation() const
+    {
         return location;
     }
+    std::string Character::print() const
+    {
+        return "Character: " + name;
+    }
+    Cowboy::Cowboy(const std::string &name, const Point &location)
+        : Character(name, location, 110), bullets(6) {}
 
-    std::string Character::print() const {
-       return "Character: " + name;
+    Cowboy::~Cowboy() {}
+
+    void Cowboy::shoot(Character *enemy)
+    {
     }
 
-    // Implementation of Cowboy class
-    Cowboy::Cowboy(const std::string& name, const Point& location)
-        : Character(name, location) {}
-
-    void Cowboy::shoot(Character* enemy) {}
-
-    bool Cowboy::hasBullets() const {
+    bool Cowboy::hasBullets() const
+    {
         return true;
     }
 
-    void Cowboy::reload() {}
-
-    std::string Cowboy::print() const {
-       return "Cowboy: " + getName() + ", Weapon: " + weapon;
+    void Cowboy::reload()
+    {
+    }
+    std::string Cowboy::print() const
+    {
+        return "Cowboy: " + getName();
     }
 
-    // Implementation of Ninja class
-    Ninja::Ninja(const std::string& name, const Point& location, int speed)
-        : Character(name, location), speed(speed) {}
+    Ninja::Ninja(const std::string &name, const Point &location, int speed)
+        : Character(name, location, 100), speed(speed) {}
 
-    void Ninja::move(Character* enemy) {}
+    Ninja::~Ninja() {}
 
-    void Ninja::slash(Character* enemy) {}
-
-    std::string Ninja::print() const {
-       
-       return "Ninja: " +getName() ;
+    void Ninja::move(Character *enemy)
+    {
     }
 
-    // Implementation of YoungNinja class
-    YoungNinja::YoungNinja(const std::string& name, const Point& location)
-        : Ninja(name, location, 10) {}
+    void Ninja::slash(Character *enemy) {}
 
-    // Implementation of TrainedNinja class
-    TrainedNinja::TrainedNinja(const std::string& name, const Point& location)
-        : Ninja(name, location, 20) {}
+    std::string Ninja::print() const
+    {
 
-    // Implementation of OldNinja class
-    OldNinja::OldNinja(const std::string& name, const Point& location)
-        : Ninja(name, location, 5) {}
+        return "Ninja: " + getName();
+    }
+    YoungNinja::YoungNinja(const std::string &name, const Point &location)
+        : Ninja(name, location, 14) {}
 
+    YoungNinja::~YoungNinja() {}
+
+    std::string YoungNinja::print() const
+    {
+
+        return "Ninja: " + getName();
+    }
+
+    TrainedNinja::TrainedNinja(const std::string &name, const Point &location)
+        : Ninja(name, location, 12) {}
+
+    TrainedNinja::~TrainedNinja() {}
+
+    std::string TrainedNinja::print() const
+    {
+
+        return "Ninja: " + getName();
+    }
+
+    OldNinja::OldNinja(const std::string &name, const Point &location)
+        : Ninja(name, location, 8) {}
+
+    OldNinja::~OldNinja() {}
+
+    std::string OldNinja::print() const
+    {
+
+        return "Ninja: " + getName();
+    }
 } // namespace ariel
-
-

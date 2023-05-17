@@ -43,7 +43,7 @@ namespace ariel
     TEST_CASE("TEST 3: Character IsAlive Test")
     {
         Point location(0, 0);
-        Character character("John", location);
+        Character character("John", location,100);
 
         REQUIRE(character.isAlive());
     }
@@ -52,8 +52,8 @@ namespace ariel
     {
         Point location1(0, 0);
         Point location2(3, 4);
-        Character character1("John", location1);
-        Character character2("Jane", location2);
+        Character character1("John", location1,100);
+        Character character2("Jane", location2,100);
 
         double expectedDistance = 5.0;
         double actualDistance = character1.distance(&character2);
@@ -64,7 +64,7 @@ namespace ariel
     TEST_CASE("TEST 5: Character Hit Test")
     {
         Point location(0, 0);
-        Character character("John", location);
+        Character character("John", location,10);
 
         character.hit(10);
 
@@ -74,7 +74,7 @@ namespace ariel
     TEST_CASE("TEST 6: Character GetName Test")
     {
         Point location(0, 0);
-        Character character("John", location);
+        Character character("John", location,100);
 
         std::string expectedName = "John";
         std::string actualName = character.getName();
@@ -85,9 +85,9 @@ namespace ariel
     TEST_CASE("TEST 7: Character Print Test")
     {
         Point location(0, 0);
-        Character character("John", location);
+        Character character("John", location,100);
 
-        std::string expectedPrint = "Name: John, Location: (0, 0)";
+        std::string expectedPrint = "Name: John, Location: (0, 0), Hit Points: 100";
         std::string actualPrint = character.print();
 
         REQUIRE(actualPrint == expectedPrint);
@@ -99,7 +99,7 @@ namespace ariel
         Cowboy cowboy("John", location);
         cowboy.reload();
 
-        std::string expectedPrint = "Name: John, Location: (0, 0), Weapon: Pistol (6 bullets)";
+        std::string expectedPrint = "Name: John, Location: (0, 0), Hit Points: 110, Bullets: 6";
         std::string actualPrint = cowboy.print();
 
         REQUIRE(actualPrint == expectedPrint);
@@ -175,7 +175,7 @@ namespace ariel
 TEST_CASE("TEST 15: Character Hit Test (With Exceptions)")
 {
     Point location(0, 0);
-    Character character("John", location);
+    Character character("John", location,0);
 
     // Hitting a character with negative amount should throw an exception
     CHECK_THROWS_AS(character.hit(-10), std::runtime_error);
@@ -238,7 +238,7 @@ TEST_CASE("TEST 19: Ninja Slash Test")
     Point location1(0, 0);
     Point location2(1, 1);
     Ninja ninja("Ryu", location1, 10);
-    Character enemy("Enemy", location2);
+    Character enemy("Enemy", location2,110);
 
     ninja.slash(nullptr); // Slashing a null enemy should have no effect
     CHECK(enemy.isAlive());
